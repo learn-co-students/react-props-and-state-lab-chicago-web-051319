@@ -18,7 +18,7 @@ class App extends React.Component {
 
   onFindPetsClick = () => {
     let url = "/api/pets"
-      console.log(this.state.filters.type);
+
     if (this.state.filters.type === "cat"){
       url += "?type=cat"
     } else if (this.state.filters.type === "dog"){
@@ -44,6 +44,13 @@ class App extends React.Component {
   })
   }
 
+  onAdoptPet(id){
+    this.state.pets.find(pet => {
+      pet.id === id
+      console.log(pet)
+    })
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -56,7 +63,9 @@ class App extends React.Component {
               <Filters onChangeType={this.onChangeType} onFindPetsClick={this.onFindPetsClick} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} />
+              <PetBrowser
+              onAdoptPet={this.onAdoptPet}
+              pets={this.state.pets} />
             </div>
           </div>
         </div>
