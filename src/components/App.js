@@ -44,10 +44,16 @@ class App extends React.Component {
   })
   }
 
-  onAdoptPet(id){
-    this.state.pets.find(pet => {
-      pet.id === id
-      console.log(pet)
+  onAdoptPet = (id) => {
+    const pet = this.state.pets.find((pet)=>{
+      return pet.id === id
+    })
+    pet.isAdopted = true;
+    const index = this.state.pets.indexOf(pet)
+    this.state.pets[index] = pet
+
+    this.setState({
+      pets: this.state.pets
     })
   }
 
